@@ -29,10 +29,11 @@ class Commuter(mg.GeoAgent):
                          geometry,
                          crs,
                          )
-        # TODO 1 ask boyu how to set time
+        # TODO 1 ask boyu how to set time add starting and ending time to dataframe
         self.start_time_h = round(np.random.normal(6.5, 1))
         while self.start_time_h < 6 or self.start_time_h > 9:
             self.start_time_h = round(np.random.normal(6.5, 1))
+
         self.start_time_m = np.random.randint(0, 12) * 5
         self.end_time_h = self.start_time_h + 8  # will work for 8 hours
         self.end_time_m = self.start_time_m

@@ -174,6 +174,8 @@ class CampusWalkModel(mesa.Model):
         self.__update_clock()
         self.schedule.step()
         self.datacollector.collect(self)
+        #TODO Collect data to csv call get number, history append or concat, if not runiing export csv
+        #self.running
 
     def __update_clock(self) -> None:
         self.minute += 5

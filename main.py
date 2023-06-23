@@ -1,5 +1,4 @@
 # This is a sample Python script.
-
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 import mesa
@@ -15,8 +14,8 @@ from src.visualization.server import (
 if __name__ == '__main__':
     print("main->running...")
     model_params = {
-        "population_file": 'data/population/test_pop.csv',
-        #"population_file" : 'data/population/ub_pop_with_path.csv',
+        #"population_file": 'data/population/test_pop.csv',
+        "population_file" : 'data/population/ub_pop_with_path.csv',
         "data_crs": 'epsg:4326',
         "buildings_file": f"data/shp_zip/single_bldings.zip",
         #"buildings_file": f"data/shp/UB_bld.zip",
@@ -39,10 +38,9 @@ if __name__ == '__main__':
 
     server = mesa.visualization.ModularServer(
         CampusWalkModel,
-        #[clock_element, status_chart],
-        [map_element, clock_element, status_chart],
+        [clock_element, status_chart],
+        #[map_element, clock_element, status_chart],
         "Campus Walking",
         model_params,
     )
     server.launch()
-
