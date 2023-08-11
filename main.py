@@ -1,6 +1,7 @@
 # This is a sample Python script.
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+from tqdm.auto import tqdm
 import mesa
 import mesa_geo as mg
 from src.model.model import CampusWalkModel
@@ -9,6 +10,8 @@ from src.visualization.server import (
     clock_element,
     status_chart,
 )
+
+LUCH = False
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
@@ -34,13 +37,24 @@ if __name__ == '__main__':
             step=0.1,
         ),
     }
-    map_element = mg.visualization.MapModule(agent_draw, map_height=600, map_width=600)
 
-    server = mesa.visualization.ModularServer(
-        CampusWalkModel,
-        [clock_element, status_chart],
-        #[map_element, clock_element, status_chart],
-        "Campus Walking",
-        model_params,
-    )
-    server.launch()
+    if LUCH == True:
+        map_element = mg.visualization.MapModule(agent_draw, map_height=600, map_width=600)
+        server = mesa.visualization.ModularServer(
+            CampusWalkModel,
+            [clock_element, status_chart],
+            # [map_element, clock_element, status_chart],
+            "Campus Walking",
+            model_params,
+        )
+        server.launch()
+    else:
+        model = CampusWalkModel(**model_params)
+
+        for _ in tqdm(range(240)):
+            model.step()
+
+        model_results = model.datacollector.get_model_vars_dataframe()
+        model_results.to_csv('test_output.csv')
+        print(model_results.head())
+        print("Done!")
