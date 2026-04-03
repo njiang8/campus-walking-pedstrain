@@ -6,7 +6,8 @@ This simulation models campus commuters traveling between classrooms and dormito
 * Interactive Web Server: Real-time geographic visualization of commuters, buildings, and campus infrastructure with adjustable parameters.
 * Headless Batch Mode: Non-interactive simulation that generates animated GIFs of movement and quantitative plots of commuter behavior.
 
- 
+
+```
 ├── data/                      # Geographic and population input data
 │   ├── population/            # Commuter CSV files (home/work/path coordinates)
 │   ├── shp/                   # Uncompressed shapefiles (raw geographic data)
@@ -30,3 +31,5 @@ This simulation models campus commuters traveling between classrooms and dormito
 ├── run_ub_without_server.py   # Launch headless simulation (GIF/plot output)
 ├── requirements.txt           # Full project dependency list
 └── README.md                  # Project documentation (this file)
+
+```
